@@ -5,6 +5,7 @@
 #ifndef MCMALLOC_BLOCK_H
 #define MCMALLOC_BLOCK_H
 #include "defs.h"
+#include <stddef.h>
 
 typedef struct block_header {
     size_t size_and_flags;
@@ -40,6 +41,14 @@ static void block_set_prev_free(block_header *block) {
 
 static void block_set_prev_allocated(block_header *block) {
     block->size_and_flags &= ~BLOCK_FLAG_PREV_FREE;
+}
+
+static void *block_payload(block_header *block) {
+    return (unsigned char *) block + sizeof(block_header);
+}
+
+static const void *block_payload_const(const block_header *block) {
+    return (const unsigned char *) block + sizeof(block_header);
 }
 
 #endif //MCMALLOC_BLOCK_H
