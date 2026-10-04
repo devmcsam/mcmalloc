@@ -5,7 +5,10 @@
 #ifndef MCMALLOC_BLOCK_H
 #define MCMALLOC_BLOCK_H
 #include <stddef.h>
-#include "defs.h"
+#define BLOCK_FLAG_ALLOCATED ((size_t)1 << 0)
+#define BLOCK_FLAG_PREV_FREE ((size_t)1 << 1)
+#define BLOCK_FLAG_MASK ((size_t)0xF)
+#define BLOCK_SIZE_MASK (~BLOCK_FLAG_MASK)
 
 typedef struct block_header {
     size_t size_and_flags;
