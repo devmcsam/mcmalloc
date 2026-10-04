@@ -6,7 +6,8 @@
 #define MCMALLOC_SIZE_CLASS_H
 #include <stddef.h>
 
-static constexpr size_t size_classes[] = {
+// each size class gets a 16 KiB chunk in a small run. This does not coalesce with medium chunks.
+static constexpr size_t small_size_classes[] = {
     16, 32, 48, 64, 80, 96, 112, 128,
     144, 160, 176, 192, 208, 224, 240, 256,
     288, 320, 352, 384, 416, 448, 480, 512,
@@ -19,6 +20,6 @@ static constexpr size_t size_classes[] = {
 
 // This CAN NOT be called when size is greater than the largest size class. It must be handled previous to this function
 // call.
-size_t class_index(size_t size);
+size_t small_class_index(size_t size);
 
 #endif //MCMALLOC_SIZE_CLASS_H
