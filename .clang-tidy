@@ -1,0 +1,16 @@
+Checks: >
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  cert-*,
+  misc-*,
+  performance-*,
+  readability-*,
+  -modernize-*,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling
+
+HeaderFilterRegex: '(src/|include/)'
+
+CheckOptions:
+  - key: readability-implicit-bool-conversion.AllowIntegerConditions
+    value: 'false'
