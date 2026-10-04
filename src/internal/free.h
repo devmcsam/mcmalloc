@@ -20,14 +20,11 @@ typedef struct free_list {
 } free_list;
 
 static free_node *block_free_node(block_header *block) {
-    return (free_node *) block_payload(block);
+    return block_payload(block);
 }
 
-static block_header *
-free_node_block(free_node *node) {
-    return (block_header *) (
-        (unsigned char *) node - sizeof(block_header)
-    );
+static block_header *free_node_block(free_node *node) {
+    return (block_header *)((unsigned char *)node - sizeof(block_header));
 }
 
 #endif //MCMALLOC_FREE_H
