@@ -15,6 +15,7 @@ endif ()
 
 add_library(${PROJECT_NAME} STATIC
         src/mcmalloc.c
+        src/internal/data.h
 )
 
 target_include_directories(${PROJECT_NAME}
