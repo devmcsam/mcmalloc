@@ -34,6 +34,33 @@ typedef struct size_class {
     free_list free_list;
 } size_class;
 
+static size_t block_size(const block_header *block) {
+    return block->size_and_flags & BLOCK_SIZE_MASK;
+}
+
+static bool block_is_allocated(const block_header *block) {
+    return (block->size_and_flags & BLOCK_FLAG_ALLOCATED) != 0;
+}
+
+static bool block_prev_is_free(const block_header *block) {
+    return (block->size_and_flags & BLOCK_FLAG_PREV_FREE) != 0;
+}
+
+static void block_set_allocated(block_header *block) {
+    block->size_and_flags |= BLOCK_FLAG_ALLOCATED;
+}
+
+static void block_set_free(block_header *block) {
+    block->size_and_flags &= ~BLOCK_FLAG_ALLOCATED;
+}
+
+static void block_set_prev_free(block_header *block) {
+    block->size_and_flags |= BLOCK_FLAG_PREV_FREE;
+}
+
+static void block_set_prev_allocated(block_header *block) {
+    block->size_and_flags &= ~BLOCK_FLAG_PREV_FREE;
+}
 
 void *mcmalloc(const size_t size) {
     return nullptr;
