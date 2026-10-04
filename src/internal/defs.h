@@ -15,6 +15,7 @@
 #define ALLOC_NUM_SIZE_CLASSES (68)
 #define INITIAL_HEAP_SIZE (4194304) // 4 MiB
 #define LARGE_ALLOC_THRESHOLD (1u << 20) // 1 MiB
+// medium allocations occupy the range between SMALL_ALLOC_THRESHOLD and LARGE_ALLOC_THRESHOLD
 #define SMALL_ALLOC_THRESHOLD (16384) // 16 KiB
 #define RUN_SIZE (16384) // 16 KiB
 
