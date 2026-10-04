@@ -21,6 +21,8 @@ add_library(${PROJECT_NAME} STATIC
         src/internal/defs.h
         src/os_interface.c
         src/internal/os_interface.h
+        src/size_class.c
+        src/internal/size_class.h
 )
 
 target_include_directories(${PROJECT_NAME}
